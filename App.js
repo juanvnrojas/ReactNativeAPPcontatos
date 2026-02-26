@@ -1,16 +1,17 @@
-import * as React from "react";
-import {
-  View,
-  Text,
-  Button,
-  Image,
-  StyleSheet,
-  TextInput,
-  StatusBar,
-  ScrollView,
-} from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import * as React from "react";
+import {
+  Button,
+  Image,
+  ScrollView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 function HomeScreen({ navigation }) {
   const [email, botarEmail] = React.useState("");
@@ -85,72 +86,144 @@ function ContatoScreen({ navigation }) {
 
   return (
     <ScrollView style={{ flex: 1 }}>
-      <ScrollView horizontal style={styles.item}>
-        <View style={styles.row}>
-          <Image
-            style={styles.icon}
-            source={{
-              uri: "https://cdn-icons-png.flaticon.com/512/1144/1144811.png",
-            }}
-          />
-          <View style={{ marginLeft: 15 }}>
-            <Text style={styles.text1}>{user1.nome}</Text>
-            <Text style={styles.text1}>{user1.numero}</Text>
+      <TouchableOpacity
+        style={styles.item}
+        onPress={() =>
+          navigation.navigate("AltDel", {
+            nome: user1.nome,
+            numero: user1.numero,
+            email: "Jg@gmail.com",
+          })
+        }
+      >
+        <View horizontal style={styles.item}>
+          <View style={styles.row}>
+            <Image
+              style={styles.icon}
+              source={{
+                uri: "https://cdn-icons-png.flaticon.com/512/1144/1144811.png",
+              }}
+            />
+            <View style={{ marginLeft: 15 }}>
+              <Text style={styles.text1}>{user1.nome}</Text>
+              <Text style={styles.text1}>{user1.numero}</Text>
+            </View>
           </View>
         </View>
-      </ScrollView>
-      <ScrollView horizontal style={styles.item}>
-        <View style={styles.row}>
-          <Image
-            style={styles.icon}
-            source={{
-              uri: "https://cdn-icons-png.flaticon.com/512/1144/1144811.png",
-            }}
-          />
-          <View style={{ marginLeft: 15 }}>
-            <Text style={styles.text1}>{user2.nome}</Text>
-            <Text style={styles.text1}>{user2.numero}</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.item}
+        onPress={() =>
+          navigation.navigate("AltDel", {
+            nome: user2.nome,
+            numero: user2.numero,
+            email: "IshmaelLimbus@gmail.com",
+          })
+        }
+      >
+        <View horizontal style={styles.item}>
+          <View style={styles.row}>
+            <Image
+              style={styles.icon}
+              source={{
+                uri: "https://cdn-icons-png.flaticon.com/512/1144/1144811.png",
+              }}
+            />
+            <View style={{ marginLeft: 15 }}>
+              <Text style={styles.text1}>{user2.nome}</Text>
+              <Text style={styles.text1}>{user2.numero}</Text>
+            </View>
           </View>
         </View>
-      </ScrollView>
-      <ScrollView horizontal style={styles.item}>
-        <View style={styles.row}>
-          <Image
-            style={styles.icon}
-            source={{
-              uri: "https://cdn-icons-png.flaticon.com/512/1144/1144811.png",
-            }}
-          />
-          <View style={{ marginLeft: 15 }}>
-            <Text style={styles.text1}>{user3.nome}</Text>
-            <Text style={styles.text1}>{user3.numero}</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.item}
+        onPress={() =>
+          navigation.navigate("AltDel", {
+            nome: user3.nome,
+            numero: user3.numero,
+            email: "Natalia@gmail.com",
+          })
+        }
+      >
+        <View horizontal style={styles.item}>
+          <View style={styles.row}>
+            <Image
+              style={styles.icon}
+              source={{
+                uri: "https://cdn-icons-png.flaticon.com/512/1144/1144811.png",
+              }}
+            />
+            <View style={{ marginLeft: 15 }}>
+              <Text style={styles.text1}>{user3.nome}</Text>
+              <Text style={styles.text1}>{user3.numero}</Text>
+            </View>
           </View>
         </View>
-      </ScrollView>
+      </TouchableOpacity>
     </ScrollView>
   );
 }
 
 function CadastroContatosScreen({ navigation }) {
+  const [email, botarEmail] = React.useState("");
+  const [nome, botarNome] = React.useState("");
+  const [telefone, botarTelefone] = React.useState("");
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Help screen</Text>
+    <View style={styles.container2}>
+      <Text style={styles.text}>Nome</Text>
+      <TextInput style={styles.input} value={nome} onChangeText={botarNome} />
+
+      <Text style={styles.text}>Email</Text>
+      <TextInput style={styles.input} value={email} onChangeText={botarEmail} />
+
+      <Text style={styles.text}>Telefone</Text>
+      <TextInput
+        style={styles.input}
+        value={telefone}
+        onChangeText={botarTelefone}
+      />
+
       <Button
-        title="Back to Home"
-        onPress={() => navigation.navigate("Home")}
-      ></Button>
+        title="                    Salvar                    "
+        onPress={() => Alert.alert("Salvo")}
+      />
+      <StatusBar style="auto" />
     </View>
   );
 }
 
-function AltDelScreen({ navigation }) {
+function AltDelScreen({ navigation, route }) {
+  const { nome, numero, email } = route.params;
+
+  const [novoNome, setNovoNome] = React.useState(nome);
+  const [novoEmail, setNovoEmail] = React.useState(email);
+  const [novoNumero, setNovoNumero] = React.useState(numero);
+
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Help screen</Text>
-      <Button
-        title="Back to Home"
-        onPress={() => navigation.navigate("Home")}
-      ></Button>
+    <View style={styles.container2}>
+      <Text style={styles.text}>Nome</Text>
+      <TextInput
+        style={styles.input}
+        value={novoNome}
+        onChangeText={setNovoNome}
+      />
+
+      <Text style={styles.text}>Email</Text>
+      <TextInput
+        style={styles.input}
+        value={novoEmail}
+        onChangeText={setNovoEmail}
+      />
+
+      <Text style={styles.text}>Telefone</Text>
+      <TextInput
+        style={styles.input}
+        value={novoNumero}
+        onChangeText={setNovoNumero}
+      />
+
+      <Button title="Salvar" onPress={() => alert("Alterado!")} />
     </View>
   );
 }
@@ -183,6 +256,47 @@ function App() {
         <Stack.Screen
           name="Contato"
           component={ContatoScreen}
+          options={({ navigation }) => ({
+            headerStyle: {
+              backgroundColor: "#4594f1",
+            },
+            headerTintColor: "#fff",
+            headerTitleStyle: {
+              color: "#fff",
+              fontSize: 28,
+            },
+            headerRight: () => (
+              <Text
+                style={{
+                  fontSize: 30,
+                  color: "white",
+                  marginRight: 10,
+                }}
+                onPress={() => navigation.navigate("ContatoCad")}
+              >
+                +
+              </Text>
+            ),
+          })}
+        />
+        <Stack.Screen
+          name="ContatoCad"
+          component={CadastroContatosScreen}
+          options={{
+            headerTitle: "Contato",
+            headerStyle: {
+              backgroundColor: "#4594f1",
+            },
+            headerTintColor: "#fff",
+            headerTitleStyle: {
+              color: "#fff",
+              fontSize: 28,
+            },
+          }}
+        />
+        <Stack.Screen
+          name="AltDel"
+          component={AltDelScreen}
           options={{
             headerStyle: {
               backgroundColor: "#4594f1",
@@ -194,8 +308,6 @@ function App() {
             },
           }}
         />
-        <Stack.Screen name="ContatoCad" component={CadastroContatosScreen} />
-        <Stack.Screen name="AltDel" component={AltDelScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -270,7 +382,7 @@ const styles = StyleSheet.create({
     marginRight: 185,
     color: "#000000",
   },
-    text1: {
+  text1: {
     fontSize: 20,
     marginRight: 185,
     color: "#000000",
