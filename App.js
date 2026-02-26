@@ -243,6 +243,7 @@ function App() {
           name="Usuário"
           component={CadastroScreen}
           options={{
+            headerTitleAlign: "center",
             headerStyle: {
               backgroundColor: "#4594f1",
             },
@@ -257,10 +258,12 @@ function App() {
           name="Contato"
           component={ContatoScreen}
           options={({ navigation }) => ({
+            headerTitle: "Lista de Contatos",
             headerStyle: {
               backgroundColor: "#4594f1",
             },
             headerTintColor: "#fff",
+            headerTitleAlign: "center",
             headerTitleStyle: {
               color: "#fff",
               fontSize: 28,
@@ -284,6 +287,7 @@ function App() {
           component={CadastroContatosScreen}
           options={{
             headerTitle: "Contato",
+            headerTitleAlign: "center",
             headerStyle: {
               backgroundColor: "#4594f1",
             },
@@ -298,6 +302,8 @@ function App() {
           name="AltDel"
           component={AltDelScreen}
           options={{
+            headerTitle: "Contato",
+            headerTitleAlign: "center",
             headerStyle: {
               backgroundColor: "#4594f1",
             },
